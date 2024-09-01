@@ -5,12 +5,14 @@ import { useAuth } from '../context/AuthContext';
 
 const RegisterPage = () => {
     const { register } = useAuth();
+    const navigate = useNavigate();
     const onFinish = async (values) => {
         console.log(values);
         try{
             const res = await register(values.username, values.email, values.password);
             if(res.success){
                 message.success(res.message);
+                navigate('/');
             }
             else{
                 message.error(res.message);
