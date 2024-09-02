@@ -22,7 +22,6 @@ const LoginPage = () => {
         message.error(error.message);
     }
    };
-
    return (
     <>
     <header className="App-header">
@@ -30,7 +29,6 @@ const LoginPage = () => {
         <section className="left-section">
           <h1>Login to SnippetHub</h1>
         </section>
-
         <section className="right-section">
           <Form layout="vertical" onFinish={onFinish}>
           <Form.Item
