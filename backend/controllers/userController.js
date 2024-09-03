@@ -8,6 +8,12 @@ const generateToken = (id) => {
 
 const registerUser = async (req, res) => {
     const { username, email, password } = req.body;
+    if (!username || !email || !password) {
+      return res.status(400).json({
+          success: false,
+          message: 'Please provide all required fields: username, email, and password'
+      });
+  }
     const userExists = await User.findOne({ email });
     if(userExists){
         return{
@@ -35,8 +41,30 @@ const registerUser = async (req, res) => {
     }
 
 
+  
+    const loginUser = async (req, res) => {
+      console.log(req.body);
+      const { email, password } = req.body;
+    
+      const user = await User.findOne({ email });
+    
+      if (user && (await user.matchPassword(password))) {
+        res.json({
+          _id: user._id,
+          username: user.username,
+          email: user.email,
+          token: generateToken(user._id),
+        });
+      } else {
+        res.status(401).json({ message: 'Invalid email or password' });
+        // throw new Error('Invalid email or password');
+      }
+    };
+
+
 module.exports = {
-    registerUser
+    registerUser , 
+    loginUser
 }
     
     

@@ -32,14 +32,14 @@ const RegisterPage = () => {
               <section className="right-section">
                 <Form layout="vertical" onFinish={onFinish}>
                   <Form.Item
-                    label="Name"
-                    htmlFor="name"
-                    name="name"
+                    label="Username"
+                    htmlFor="username"
+                    name="username"
                     className="d-block"
                     rules={[{ required: true, message: "Name is required!" }]}
                   >
                     <Input
-                      id="name"
+                      id="username"
                       type="text"
                       placeholder="Enter your name"
                       rules={[{ required: true, message: "Email is required!" }]}
